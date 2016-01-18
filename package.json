@@ -1,0 +1,29 @@
+{
+  "name": "rubytodo",
+  "version": "1.0.0",
+  "description": "Your usual todo app",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danielleknudson/rubyTodo.git"
+  },
+  "author": "danielleknudson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danielleknudson/rubyTodo/issues"
+  },
+  "homepage": "https://github.com/danielleknudson/rubyTodo#readme",
+  "dependencies": {
+    "backbone": "^1.2.3",
+    "backbone.marionette": "^2.4.4",
+    "handlebars": "^4.0.5",
+    "jquery": "^2.2.0",
+    "underscore": "^1.8.3"
+  }
+}
