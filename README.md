@@ -8,4 +8,5 @@ cd railsTodo
 bundle install
 npm install
 rake db:migrate
+rails s
 ```
