@@ -3,12 +3,20 @@ var TodoView = Marionette.ItemView.extend({
 
   className: 'item container',
 
-  template: _.template('<li class="todo-item"><input type="checkbox" /><span><%= content %></span></li>'),
-
   intialize: function(options) {
     this.model = options.model;
     this.bindTo(this.model, "change", this.render, this);
     this.render();
+  },
+
+  getTemplate: function() {
+
+    if (this.model.get('completed')) {
+      return _.template('<li class="todo-item"><input type="checkbox" checked/><span class="complete"><%= content %></span></li>');
+    } else {
+      return _.template('<li class="todo-item"><input type="checkbox" /><span><%= content %></span></li>');
+    }
+
   },
 
   events: {
@@ -21,6 +29,8 @@ var TodoView = Marionette.ItemView.extend({
 
   toggleState: function(e) {
     $(e.target).next().toggleClass('complete');
+    this.model.set('completed', 'true');
+    this.model.sync('update', this.model);
   },
 
   showEditBox: function(e) {
