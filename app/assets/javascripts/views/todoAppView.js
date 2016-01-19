@@ -1,6 +1,8 @@
 var TodoAppView = Marionette.View.extend({
   el: '.app.container',
 
+  url: '/todos',
+
   initialize: function () {
     this.collection = new Todos();
     this.todoListView = new TodosView({collection: this.collection});

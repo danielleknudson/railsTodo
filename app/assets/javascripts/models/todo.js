@@ -1,6 +1,4 @@
 var Todo = Backbone.Model.extend({
-  url: '/todos',
-
   initialize: function (options) {
     this.set('content', options.content);
   },
@@ -15,7 +13,7 @@ var Todo = Backbone.Model.extend({
   sync: function(method, model, options) {
     var options = options || {};
 
-    if (method === "read") {
+    if (method === "read" || method === "create") {
       options.url = this.methodToURL[method.toLowerCase()];
     } else {
       options.url = this.methodToURL[method.toLowerCase()] + model.get('id');

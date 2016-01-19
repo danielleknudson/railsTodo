@@ -3,6 +3,7 @@ var TodosView = Marionette.CollectionView.extend({
   collection: Todos,
   el: '.todos',
   initialize: function() {
+    this.collection.on('change', this.render);
     this.render();
   }
 });
