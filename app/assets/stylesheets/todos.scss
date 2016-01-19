@@ -1,3 +1,65 @@
 // Place all the styles related to the todos controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+ul.todos {
+  padding: 0;
+  width: 100%;
+}
+
+.item.container,
+li.todo-item {
+  padding: 0;
+  width: 100%
+}
+
+li.todo-item {
+  list-style-type: none;
+  padding: 5px 0;
+}
+
+li.todo-item:hover {
+    background: #f6f6f6;
+    padding: 5px 0;
+    border-radius: 3px;
+    box-shadow: 0px 2px 3px 0px rgba(0,0,0,.10);
+    margin: 2px 0;
+}
+
+span {
+  width: 100%
+}
+
+span.complete {
+  text-decoration: line-through;
+  color: #bbb;
+}
+
+input.edit-box {
+  width: 400px;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  padding: 5px;
+}
+
+button {
+  float: right;
+  margin-left: 10px;
+  width: 56px;
+  height: 29px;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  background: transparent;
+  font-size: 13px;
+  text-align: center;
+}
+
+button.cancel {
+  color: #0480f9;
+  border: 1px solid #0480f9;
+}
+
+button.save {
+  margin-right: 10px;
+  border: 1px solid #08ab42;
+  color: #08ab42;
+}

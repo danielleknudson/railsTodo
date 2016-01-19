@@ -1,53 +1,65 @@
 var TodoView = Marionette.ItemView.extend({
-  tagName: 'li',
-  class: 'todo-item',
-  template: _.template('<input type="checkbox" /><span><%= content %></span>'),
+  tagName: 'div',
+
+  className: 'item container',
+
+  template: _.template('<li class="todo-item"><input type="checkbox" /><span><%= content %></span></li>'),
+
   intialize: function(options) {
     this.model = options.model;
+    this.bindTo(this.model, "change", this.render, this);
     this.render();
   },
+
   events: {
     'click input[type="checkbox"]': 'toggleState',
-    'click span': 'showEditBox',
+    'click li.todo-item': 'showEditBox',
     'keyup .edit-box': 'validateInput',
     'click .cancel': 'cancelEdit',
     'click .save': 'saveEdit'
   },
+
   toggleState: function(e) {
     $(e.target).next().toggleClass('complete');
   },
+
   showEditBox: function(e) {
-    var $currentVal = $(e.target).text();
-    var $parent = $(e.target).parent();
+    // hacky way to handle span click events
+    if ($(e.target).is('span')) {
+      e.target = $(e.target).parent();
+      return this.showEditBox(e);
+    }
 
-    $(e.target).remove();
-    
-    var $editBox = $('<input class="edit-box" type="text" name="content" /><button class="cancel">Cancel</button><button class="save">Save</button>');
+    var $parent  = $(e.target),
+        $span    = $parent.find('span'),
+        spanVal  = $span.text(),
+        $editBox = $('<input class="edit-box" type="text" name="content" /><button class="save">Save</button><button class="cancel">Cancel</button>');
+
+    $span.remove();
     $parent.append($editBox);
-
-    $parent.find('.edit-box').val($currentVal);
+    $parent.find('.edit-box').val(spanVal);
   },
+
   validateInput: function(e) {
-    if (e.which !== 13) {
-      return;
-    }
-
     var $val = $(e.target).val();
-
-    if ($val.length === 0) {
+    
+    if (e.which !== 13 || $val.length === 0) {
       return;
     }
 
-    updateTodoContent($val);
+    this.updateTodoContent($val);
   },
+
   updateTodoContent: function(value) {
     this.model.set('content', value);
     this.model.sync('update', this.model);
   },
+
   cancelEdit: function(e) {
     this.model.fetch();
     this.render();
   },
+
   saveEdit: function(e) {
     $val = $(e.target).parent().find('input.edit-box').val();
     if ($val.length === 0) {
