@@ -24,7 +24,8 @@ var TodoView = Marionette.ItemView.extend({
     'click li.todo-item': 'showEditBox',
     'keyup .edit-box': 'validateInput',
     'click .cancel': 'cancelEdit',
-    'click .save': 'saveEdit'
+    'click .save': 'saveEdit',
+    'click .delete': 'deleteTodo'
   },
 
   toggleState: function(e) {
@@ -43,7 +44,12 @@ var TodoView = Marionette.ItemView.extend({
     var $parent  = $(e.target),
         $span    = $parent.find('span'),
         spanVal  = $span.text(),
-        $editBox = $('<input class="edit-box" type="text" name="content" /><button class="save">Save</button><button class="cancel">Cancel</button>');
+        $editBox = $(['<input class="edit-box" type="text" name="content" />',
+                      '<div class="btn-options">',
+                        '<button class="save">Save</button>',
+                        '<button class="cancel">Cancel</button>',
+                        '<button class="delete">Delete</button>',
+                      '</div>'].join(''));
 
     $span.remove();
     $parent.append($editBox);
@@ -77,5 +83,9 @@ var TodoView = Marionette.ItemView.extend({
     }
     this.updateTodoContent($val);
     this.render();
+  },
+  deleteTodo: function() {
+    this.model.sync('delete', this.model);
+    this.remove();
   }
 });

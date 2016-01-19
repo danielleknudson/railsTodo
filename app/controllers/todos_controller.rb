@@ -26,7 +26,7 @@ class TodosController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
     @todo = Todo.find(params[:id])
     @todo.destroy
   end

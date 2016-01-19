@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get 'todos' => 'todos#index', defaults: {format: :json}
   get 'todos/show/:id' => 'todos#show', defaults: {format: :json}
   put 'todos/update/:id' => 'todos#update'
-  delete 'todos/delete/:id' => 'todos#delete'
+  delete 'todos/:id' => 'todos#destroy'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -9,7 +9,7 @@ ul.todos {
 .item.container,
 li.todo-item {
   padding: 0;
-  width: 100%
+  width: 100%;
 }
 
 li.todo-item {
@@ -18,7 +18,7 @@ li.todo-item {
 }
 
 li.todo-item:hover {
-    background: #f6f6f6;
+    border: 1px solid #ebecef;
     padding: 5px 0;
     border-radius: 3px;
     box-shadow: 0px 2px 3px 0px rgba(0,0,0,.10);
@@ -26,7 +26,7 @@ li.todo-item:hover {
 }
 
 span {
-  width: 100%
+  width: 100%;
 }
 
 span.complete {
@@ -35,10 +35,15 @@ span.complete {
 }
 
 input.edit-box {
-  width: 400px;
+  width: 61%;
   border-radius: 3px;
   border: 1px solid #ccc;
   padding: 5px;
+}
+
+.btn-options {
+  display: inline;
+  width: 30%;
 }
 
 button {
@@ -62,4 +67,9 @@ button.save {
   margin-right: 10px;
   border: 1px solid #08ab42;
   color: #08ab42;
+}
+
+button.delete {
+  color: #ef1103;
+  border: 1px solid #ef1103;
 }
